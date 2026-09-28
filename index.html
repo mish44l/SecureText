@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SecureText | Cryptography Toolkit</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <div class="brand-icon">🔐</div>
+
+                <div>
+                    <h1>SecureText</h1>
+                    <p>Cryptography Toolkit</p>
+                </div>
+            </div>
+
+            <nav class="navigation">
+
+                <button class="nav-item active">
+                    <span>🔒</span>
+                    Encryption
+                </button>
+
+                <button class="nav-item">
+                    <span>🛡️</span>
+                    Security Tools
+                </button>
+
+                <button class="nav-item">
+                    <span>📖</span>
+                    About
+                </button>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="security-status">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>Browser Processing</strong>
+                        <small>Your data stays local</small>
+                    </div>
+                </div>
+
+                <p class="version">SecureText v1.0</p>
+
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Header -->
+            <header class="topbar">
+
+                <div>
+                    <p class="eyebrow">SECURITY TOOLKIT</p>
+
+                    <h2>Text Encryption</h2>
+
+                    <p class="page-description">
+                        Encrypt, decrypt and hash text using modern cryptographic algorithms.
+                    </p>
+                </div>
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    System Secure
+                </div>
+
+            </header>
+
+
+            <!-- Algorithm Selector -->
+            <section class="algorithm-section">
+
+                <div class="section-heading">
+                    <div>
+                        <h3>Cryptographic Method</h3>
+
+                        <p>
+                            Select an algorithm to process your text.
+                        </p>
+                    </div>
+                </div>
+                <div class="algorithm-selector">
+
+    <label for="algorithmSelect">
+        Encryption / Security Method
+    </label>
+
+    <select id="algorithmSelect">
+
+        <option value="aes">
+            AES-256-GCM
+        </option>
+
+        <option value="rsa">
+            RSA-OAEP
+        </option>
+
+        <option value="caesar">
+            Caesar Cipher
+        </option>
+
+        <option value="sha256">
+            SHA-256
+        </option>
+
+        <option value="base64">
+            Base64 Encoding
+        </option>
+
+    </select>
+
+</div>
+
+                <div class="algorithm-grid">
+
+                    <button class="algorithm-card active" data-algorithm="aes">
+
+                        <div class="algorithm-icon">
+                            🔐
+                        </div>
+
+                        <div>
+                            <strong>AES-256</strong>
+                            <span>Symmetric Encryption</span>
+                        </div>
+
+                        <div class="algorithm-check">
+                            ✓
+                        </div>
+
+                    </button>
+
+
+                    <button class="algorithm-card" data-algorithm="rsa">
+
+                        <div class="algorithm-icon">
+                            🔑
+                        </div>
+
+                        <div>
+                            <strong>RSA</strong>
+                            <span>Asymmetric Encryption</span>
+                        </div>
+
+                    </button>
+
+
+                    <button class="algorithm-card" data-algorithm="caesar">
+
+                        <div class="algorithm-icon">
+                            🔄
+                        </div>
+
+                        <div>
+                            <strong>Caesar Cipher</strong>
+                            <span>Classical Encryption</span>
+                        </div>
+
+                    </button>
+
+
+                    <button class="algorithm-card" data-algorithm="sha256">
+
+                        <div class="algorithm-icon">
+                            #️⃣
+                        </div>
+
+                        <div>
+                            <strong>SHA-256</strong>
+                            <span>Cryptographic Hash</span>
+                        </div>
+
+                    </button>
+
+                </div>
+
+
+                <div class="algorithm-card" data-algorithm="base64">
+                     <div class="algorithm-icon">↔</div>
+
+                <div>
+                <h3>Base64</h3>
+                    <p>Text Encoding</p>
+                </div>
+               </div>
+            </section>
+
+
+            <!-- Workspace -->
+            <section class="workspace">
+
+                <!-- Input Panel -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">INPUT</span>
+                            <h3>Plain Text</h3>
+                        </div>
+
+                        <span class="character-count" id="characterCount">
+                            0 characters
+                        </span>
+
+                    </div>
+
+                    <textarea
+                        id="inputText"
+                        placeholder="Enter the text you want to encrypt..."
+                        spellcheck="false"
+                    ></textarea>
+
+
+                    <!-- Key Section -->
+                    <div class="key-section" id="keySection">
+
+                        <label for="keyInput">
+                            Encryption Key
+                        </label>
+
+                        <div class="key-input-wrapper">
+
+                            <input
+                                type="password"
+                                id="keyInput"
+                                placeholder="Enter your encryption key"
+                            >
+
+                            <button
+                                type="button"
+                                id="toggleKey"
+                                class="icon-button"
+                                title="Show/hide key"
+                            >
+                                👁
+                            </button>
+
+                        </div>
+
+                        <small id="keyHelp">
+                            Your key is processed locally and is never uploaded.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+
+                        <button id="encryptButton" class="primary-button">
+                            🔒 Encrypt
+                        </button>
+
+                        <button id="decryptButton" class="secondary-button">
+                            🔓 Decrypt
+                        </button>
+
+                        <button id="clearButton" class="clear-button">
+                            Clear
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Output Panel -->
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-label">OUTPUT</span>
+                            <h3>Result</h3>
+                        </div>
+
+                        <button id="copyButton" class="copy-button">
+                            📋 Copy
+                        </button>
+
+                    </div>
+
+                    <textarea
+                        id="outputText"
+                        placeholder="Your encrypted result will appear here..."
+                        readonly
+                        spellcheck="false"
+                    ></textarea>
+
+
+                    <div class="output-info">
+
+                        <span id="outputStatus">
+                            Ready to process
+                        </span>
+
+                        <span id="outputLength">
+                            0 characters
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Algorithm Information -->
+            <section class="info-panel">
+
+                <div class="info-icon">
+                    💡
+                </div>
+
+                <div>
+
+                    <span class="panel-label">
+                        ABOUT THIS ALGORITHM
+                    </span>
+
+                    <h3 id="algorithmTitle">
+                        AES-256
+                    </h3>
+
+                    <p id="algorithmDescription">
+                        AES is a symmetric encryption algorithm widely used
+                        to protect sensitive information. The same secret key
+                        is used for encryption and decryption.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- Footer -->
+            <footer>
+
+                <p>
+                    SecureText • Educational Cryptography Project
+                </p>
+
+                <p>
+                    All processing is performed locally in your browser.
+                </p>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span id="toastMessage">Success</span>
+    </div>
+
+
+    <script src="js/utils.js"></script>
+    <script src="js/caesar.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/rsa.js"></script>
+    <script src="js/hash.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
